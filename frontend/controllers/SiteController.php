@@ -2,6 +2,9 @@
 namespace frontend\controllers;
 
 use Yii;
+use yii\helpers\Html;
+use common\models\Order;
+use common\models\OrderItem;
 use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
@@ -21,6 +24,7 @@ class SiteController extends Controller
     /**
      * @inheritdoc
      */
+
     public function behaviors()
     {
         return [
@@ -31,7 +35,7 @@ class SiteController extends Controller
                     [
                         'actions' => ['signup'],
                         'allow' => true,
-                        'roles' => ['?'],
+                        'roles' => ['@'],
                     ],
                     [
                         'actions' => ['logout'],
@@ -48,7 +52,6 @@ class SiteController extends Controller
             ],
         ];
     }
-
     /**
      * @inheritdoc
      */
@@ -130,6 +133,18 @@ class SiteController extends Controller
         return $this->render('signup', [
             'model' => $model,
         ]);
+    }
+    
+    public function actionProfile()
+    {   
+        if (!Yii::$app->user->isGuest) {
+            $orders = Order::find()->where(['email' => Yii::$app->user->identity->email])->asArray()->all();
+            //$orders_items = OrderItem::find()->where(['order_id' => $order['id']])->asArray()->all();
+            //debug($orders_items);die;
+            return $this->render('profile', ['orders' => $orders]);
+        }
+        throw new \yii\web\NotFoundHttpException("Сначала Вы должны зарегистрироваться!");
+        //\yii\web\NotFoundHttpException::
     }
 
     public function actionRequestPasswordReset()

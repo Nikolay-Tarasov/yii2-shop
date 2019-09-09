@@ -6,6 +6,7 @@ use yii\helpers\Markdown;
 <div class="col-xs-12 well">
     <div class="col-xs-2">
         <?php
+        //debug($model->images);die;
         $images = $model->images;
         if (isset($images[0])) {
             echo Html::img($images[0]->getUrl(), ['width' => '100%']);
@@ -13,7 +14,7 @@ use yii\helpers\Markdown;
         ?>
     </div>
     <div class="col-xs-6">
-        <h2><?= Html::encode($model->title) ?></h2>
+        <h2><?= Html::a($model->title, ['catalog/view', 'id' => $model->id], ['target' => '_blank'])?></h2>
         <?= Markdown::process($model->description) ?>
     </div>
 

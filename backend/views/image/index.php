@@ -7,9 +7,9 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\ImageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $form backend\models\MultipleUploadForm */
-
-$this->title = $searchModel->product_id ? "Product #$searchModel->product_id images" : 'Images';
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['product/index']];
+//$this->title = $searchModel->product_id ? "Product #$searchModel->product_id images" : 'Images';
+$this->params['breadcrumbs'][] = $searchModel->product_id;
 ?>
 <div class="image-index">
 
@@ -30,11 +30,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             'id',
+            'product_id',
             [
                 'format' => 'raw',
                 'value' => function ($model, $key, $index, $column) {
                     /** @var $model common\models\Image */
-                    return Html::img($model->getUrl());
+                    //return Html::img($model->getUrl());
+                    return "<img class='img-responsive' src=".$model->getUrl().">";
                 }
             ],
             [

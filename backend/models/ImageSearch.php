@@ -30,7 +30,10 @@ class ImageSearch extends Image
      */
     public function search($params)
     {
-        $query = Image::find();
+        //debug($params);die;
+        $query = Image::find()->where(['product_id' => $params]);
+        
+        //debug($query);die;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

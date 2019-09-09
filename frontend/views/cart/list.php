@@ -4,8 +4,8 @@ use \yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $products common\models\Product[] */
 ?>
+<?php if($products): ?>
 <h1>Your cart</h1>
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-4">
@@ -58,3 +58,6 @@ use \yii\helpers\Html;
         </div>
     </div>
 </div>
+<?php else: ?>
+Ваша корзина пуста <?= Html::a('перейти на главную', ['catalog/list'])?>
+<?php endif; ?>

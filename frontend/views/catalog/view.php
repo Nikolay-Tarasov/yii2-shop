@@ -1,9 +1,25 @@
 <?php
 /* @var $this yii\web\View */
-?>
-<h1>catalog/view</h1>
+/* @var $model common\models\Product */
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+$this->title = $model->title;
+$this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['list']];
+//echo $product[0]['title'];
+$this->params['breadcrumbs'][] = $product[0]['title'];
+?>
+
+<div class="container">
+    <?php //debug($product); ?>
+    <?php //echo $images[3]->getUrl();?>
+    <?php 
+    $count = count($images);
+    for($i = 0; $i <= $count; $i++){
+        if(isset($images[$i])){
+            echo $product[0]['title'];
+            echo '<p><img style="width:100px;" src='.$images[$i]->getUrl().'></p>';
+        }
+    }
+    
+    
+    ?>
+</div>

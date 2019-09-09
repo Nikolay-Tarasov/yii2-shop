@@ -46,9 +46,14 @@ class ImageController extends Controller
 
         $searchModel = new ImageSearch();
         $searchModel->product_id = $id;
-
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        
+        //debug($searchModel);die;
+        
+        //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search($id);
+        
+        //debug($dataProvider);die;
+        
         if (Yii::$app->request->isPost) {
             $form->files = UploadedFile::getInstances($form, 'files');
 

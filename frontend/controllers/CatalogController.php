@@ -46,9 +46,14 @@ class CatalogController extends \yii\web\Controller
         ]);
     }
 
-    public function actionView()
+    public function actionView($id)
     {
-        return $this->render('view');
+        $product = Product::find()->where(['id' => $id])->asArray()->all();
+        $images = \common\models\Image::find()->where(['product_id' => $id])->all();
+        //debug($images);die;
+        //echo $images[0]->getUrl();die;
+        //debug($product);die;
+        return $this->render('view', ['product' => $product, 'images' => $images]);
     }
 
     /**

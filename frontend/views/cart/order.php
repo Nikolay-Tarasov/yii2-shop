@@ -54,9 +54,9 @@ use \yii\bootstrap\ActiveForm;
             $form = ActiveForm::begin([
                 'id' => 'order-form',
             ]) ?>
-
-            <?= $form->field($order, 'phone') ?>
-            <?= $form->field($order, 'email') ?>
+            
+            <?= $form->field($order, 'phone')->textInput(['value' => Yii::$app->user->identity->phone]) ?>
+            <?= $form->field($order, 'email')->textInput(['value' => Yii::$app->user->identity->email]) ?>
             <?= $form->field($order, 'notes')->textarea() ?>
 
             <div class="form-group row">

@@ -5,6 +5,7 @@ namespace backend\controllers;
 use common\models\Category;
 use Yii;
 use common\models\Product;
+use common\models\Image;
 use backend\models\ProductSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -49,8 +50,12 @@ class ProductController extends Controller
      */
     public function actionView($id)
     {
+        $images = Image::find()->where(['product_id' => $id])->asArray()->all();
+        //print_r($image);die;
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'images' => $images,
         ]);
     }
 

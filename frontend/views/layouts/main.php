@@ -34,20 +34,25 @@ AppAsset::register($this);
             ]);
             $itemsInCart = Yii::$app->cart->getCount();
             $menuItems = [
-                ['label' => 'About', 'url' => ['/site/about']],
-                ['label' => 'Contact', 'url' => ['/site/contact']],
-                ['label' => 'My cart' . ($itemsInCart ? " ($itemsInCart)" : ''), 'url' => ['/cart/list']],
+                ['label' => 'Информация', 'url' => ['/site/about']],
+                ['label' => 'Контакты', 'url' => ['/site/contact']],
+                ['label' => 'Корзина' . ($itemsInCart ? " ($itemsInCart)" : ''), 'url' => ['/cart/list']],
             ];
-            /*if (Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-                $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+            if (Yii::$app->user->isGuest) {
+                $menuItems[] = ['label' => 'Регистрация', 'url' => ['/site/signup']];
+                $menuItems[] = ['label' => 'Вход', 'url' => ['/site/login']];
             } else {
                 $menuItems[] = [
-                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+                    'label' => 'Личный кабинет (' . Yii::$app->user->identity->username . ')',
+                    'url' => ['/site/profile'],
+                    'linkOptions' => ['data-method' => 'post']
+                ];
+                $menuItems[] = [
+                    'label' => 'Выход (' . Yii::$app->user->identity->username . ')',
                     'url' => ['/site/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ];
-            }*/
+            }
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => $menuItems,

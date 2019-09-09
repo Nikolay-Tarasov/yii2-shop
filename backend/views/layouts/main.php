@@ -25,23 +25,23 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => 'Shop admin',
+                'brandLabel' => 'Магазин Yii2',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
             ]);
             $menuItems = [
-                ['label' => 'Website', 'url' => '/'],
-                ['label' => 'Categories', 'url' => ['/category/index']],
-                ['label' => 'Products', 'url' => ['/product/index']],
-                ['label' => 'Orders', 'url' => ['/order/index']]
+                ['label' => 'Админка', 'url' => '/'],
+                ['label' => 'Категории', 'url' => ['/category/index']],
+                ['label' => 'Продукты', 'url' => ['/product/index']],
+                ['label' => 'Заказы', 'url' => ['/order/index']]
             ];
             if (Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+                $menuItems[] = ['label' => 'Вход', 'url' => ['/site/login']];
             } else {
                 $menuItems[] = [
-                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+                    'label' => 'Выход (' . Yii::$app->user->identity->username . ')',
                     'url' => ['/site/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ];

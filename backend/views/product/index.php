@@ -33,7 +33,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             'price',
-
+            [   
+                'format' => 'html',
+                'label' => 'img',
+                'value' => function($model){
+                    $images = $model->images;
+                    //debug($images);die;
+                    if(isset($images[0])){
+                        return "<img style='width:100px;' src=".$images[0]->getUrl().">"; 
+                    }
+                    return false;
+                },
+            ],
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {update} {images} {delete}',
